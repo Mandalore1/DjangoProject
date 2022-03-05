@@ -6,4 +6,9 @@ from django.shortcuts import render
 
 def hello_world(request):
     if request.method == "GET":
-        return HttpResponse("Hello, world!")
+        if "name" in request.GET:
+            name = request.GET["name"]
+        else:
+            name = "world"
+
+    return render(request, "hello.html", {"name": name})
